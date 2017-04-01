@@ -16,16 +16,15 @@ and to transfer money from one account to another.
 
 # REQUIREMENTS
 
-Java Compiler
-MySQL database
-Spring Framework
-Regular user:
-Username: User
-Password: password
-
-Admin User:
-admin
-adminpassword
+ Java Compiler
+ MySQL database
+ Spring Framework
+ Regular user:
+ Username: User
+ Password: password
+ Admin User:
+ admin
+ adminpassword
 
 
 # RECOMMENDED MODULES
