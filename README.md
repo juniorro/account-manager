@@ -52,4 +52,4 @@ None
 
 # VISUAL
 
-![alt tag](https://github.com/juniorro/product-manager/blob/master/snapshot.PNG)
+![alt tag]()
