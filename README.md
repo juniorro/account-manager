@@ -9,28 +9,31 @@ Online Bank Account Simulation
 
 
 # INTRODUCTION
-------------
 
 This program simulates an online bank account service to deposit
 and withdraw money to either a savings or checking accounts,
 and to transfer money from one account to another.
 
 # REQUIREMENTS
-------------
 
 Java Compiler
 MySQL database
 Spring Framework
+Regular user:
+Username: User
+Password: password
+
+Admin User:
+admin
+adminpassword
 
 
 # RECOMMENDED MODULES
--------------------
 
  None
 
 
 # INSTALLATION
-------------
 
 Java Virtual Machine
 Spring Framework
@@ -38,13 +41,9 @@ MySQL Database
 
 
 # CONFIGURATION
--------------
 
-None
+A MySQL database named "accountmanager" needs to be
+in place.
 
 
 # TROUBLESHOOTING
----------------
-
-A MySQL database named "accountmanager" need to be
-in place.
