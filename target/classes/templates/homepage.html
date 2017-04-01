@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="template">
+
+<head>
+<meta charset="UTF-8"/>
+<title>Florida General Bank</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+<link href="bootstrap/css/style.css" rel="stylesheet" media="screen"></link>
+</head>
+
+<body>
+
+
+<div layout:fragment="content">
+<div class="col-md-4 ">
+
+<form th:action="@{/accounts}" method="get">
+<div class="input-group">
+      <input type="text" name="accountcode" th:value="${accountcode}" class="form-control" placeholder="Enter Account Code..." required="required"/>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Search Account</button>
+      </span>
+    </div>
+    <div th:if="${accountException}" th:text="${accountException.message}" class="text-danger"></div>
+    </form><br/>
+
+    <div class="panel panel-primary" th:if="${account}">
+<div class="panel-heading">
+<h3 class="panel-title">Account Information</h3>
+</div>
+<div class="panel-body">
+
+<table class="table table-hover">
+   <tbody>
+   <tr>
+       <td>Name</td>
+       <td th:text="${account.client.name}"></td>
+     </tr>
+
+    <tr th:if="${account.class.simpleName=='Checking'}">
+       <td>Available Balance</td>
+       <td th:text="${account.discover}"></td>
+     </tr>
+
+     <tr>
+       <td>Account Balance</td>
+       <td th:text="${account.balance}"></td>
+     </tr>
+
+     <tr>
+       <td>Account Code</td>
+       <td th:text="${account.AccountCode}"></td>
+     </tr>
+
+      <tr>
+       <td>Account Type</td>
+       <td th:text="${account.class.simpleName}"></td>
+     </tr>
+
+     <tr th:if="${account.class.simpleName=='Savings'}">
+       <td>Interest Rate</td>
+       <td th:text="${account.interest}"></td>
+     </tr>
+
+      <tr>
+       <td>Creation Date</td>
+       <td th:text="${#dates.format(account.creationDate, 'dd-MMM-yyyy')}"></td>
+     </tr>
+     </tbody>
+ </table>
+</div>
+</div>
+
+
+
+
+<div class="panel panel-primary">
+ <div class="panel-heading">
+   <h3 class="panel-title">Transactions</h3>
+ </div>
+ <div class="panel-body">
+ <form th:action="@{/transactions}" method="post">
+ <div>
+ <span>Account Code:</span>
+ <input type="hidden" name="accountcode" th:value="${accountcode}"/>
+ <span th:text="${accountcode}"></span>
+ <div>
+ <input type="radio" name="operationType" checked="checked" value="deposit" onchange="document.getElementById('trans').style.display='none'"/>
+ <span>Deposit</span>
+
+ <input type="radio" name="operationType" value="withdraw" onchange="document.getElementById('trans').style.display='none'"/>
+ <span>Withdraw</span>
+
+ <input type="radio" name="operationType" value="transfer" onchange="document.getElementById('trans').style.display='block'"/>
+ <span>Transfer</span>
+ </div><br/>
+ <div id="trans" style="display:none">
+ <label for="inputEmail" class="col-lg-2 control-label">To</label>
+      <div class="col-lg-10">
+        <input type="text" name="accountcode2" class="form-control" id="inputEmail" placeholder="Account Code"/>
+        </div>
+      <br/><br/></div>
+
+      <label for="inputEmail" class="col-lg-2 control-label">Amount</label>
+      <div class="col-lg-10">
+        <input type="text" name="amount" class="form-control" id="inputEmail" placeholder="Amount"/>
+      </div>
+<div th:text="${#httpServletRequest.getParameter('operationException')}" class="text-danger"></div>
+<div th:if="${accountException}" th:text="${accountException.message}" class="text-danger"></div>
+
+ </div>
+ <button type="submit" class="btn btn-primary" id="inputEmail">Save</button>
+
+ </form>
+ </div>
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-8">
+<div class="panel panel-primary" th:if="${account}">
+<div class="panel-heading">
+<h3 class="panel-title">All Recent Transactions</h3>
+</div>
+<div class="panel-body">
+<table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <!-- <th>Balance</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="t:${transactionsList}">
+        <td th:text="${t.transactionNumber}"></td>
+        <td th:text="${t.class.simpleName}"></td>
+        <td th:text="${#dates.format(t.transactionDate, 'dd-MMM-yyyy')}"></td>
+        <td th:text="${t.amount}"></td>
+      </tr>
+    </tbody>
+  </table>
+<div class="container">
+<ul class="nav nav-pills">
+<li th:each="p,status:${pages}">
+<a th:href="@{/accounts(accountcode=${accountcode}, page=${status.index})}" th:text="${status.index}"></a>
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"/>
+	<title>Florida General Bank</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" th:href="@{/bootstrap/css/style.css}" media="screen"/>
+</head>
+
+<body>
+<div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+           <a class="navbar-brand" th:href="@{/home}">Berea General Bank</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a th:href="@{/accounts?accountcode=SA}">Checking</a></li>
+              <li><a th:href="@{/accounts?accountcode=CA}">Savings</a></li>
+              <li><a th:href="@{/home}">Transfer</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a th:href="@{/login?logout}">Sign Out</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+      <section layout:fragment="content"></section>
+
+     </div> <!-- /container -->
+</body>
+</html>

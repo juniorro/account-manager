@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="template">
+<head>
+<meta charset="UTF-8"/>
+	<title>Florida General Bank</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/style.css" th:href="@{/bootstrap/css/style.css}" media="screen"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+<div class="container">
+    <div class="row">
+		<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Please Sign In</h3>
+			    	<div th:if="${param.error}" class="danger">Incorrect Username or Password</div>
+			    	<div th:if="${param.logout}" class="nondanger">You've been logged out.</div>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form th:action="@{/login}" method="post">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="Username" name="username" type="text"/>
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Username" name="password" type="password" value=""/>
+			    		</div>
+			    		<div class="checkbox">
+			    	    	<label>
+			    	    		<input name="remember" type="checkbox" value="Remember Me"/> Remember Me
+			    	    	</label>
+			    	    </div>
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login"/>
+			    	</fieldset>
+			      	</form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
