@@ -1,4 +1,4 @@
-# account-manager
+# Account Manager Application
 Online Bank Account Simulation
 
 /**
